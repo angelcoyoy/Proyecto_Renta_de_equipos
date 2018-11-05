@@ -1,0 +1,14 @@
+{% extends 'equipo/base.html' %}
+
+{% block content %}
+    <div class="equipo">
+        <a class="btn btn-default" href="{% url 'editar_equipo' pk=equipo.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a class="btn btn-default" href="{% url 'eliminar_equipo' pk=equipo.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+        <h2>{{ equipo.nombre }}</h2>
+        <h6> ------------------------</h6>
+        <h6>Tipo de quipo: </h6><p>{{ equipo.tipo|linebreaksbr }}</p>
+        <h6>Marca: </h6><p>{{ equipo.marca|linebreaksbr }}</p>
+        <h6>Modelo: </h6><p>{{ equipo.modelo|linebreaksbr }}</p>
+        <h6>Precio: </h6><p>{{ equipo.precio|linebreaksbr }}</p>
+    </div>
+{% endblock %}

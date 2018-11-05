@@ -1,0 +1,21 @@
+{% extends 'equipo/base.html' %}
+
+{% block content %}
+<div class="customers">
+    <h1>Lista de equipos</h1>
+  <table id="customers">
+    <tr>
+      <th>Equipo</th>
+      <th>Marca</th>
+      <th>Precio</th>
+    </tr>
+      {% for equipo in equipos %}
+    <tr>
+      <td><a href="{% url 'detalle_equipo' pk=equipo.pk %}">{{ equipo.nombre }}</a></td>
+      <td>{{ equipo.marca|linebreaksbr }}</td>
+      <td>{{ equipo.precio|linebreaksbr }}</td>
+    </tr>
+      {% endfor %}
+  </table>
+</div>
+{% endblock %}

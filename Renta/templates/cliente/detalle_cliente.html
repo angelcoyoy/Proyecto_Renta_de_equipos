@@ -1,0 +1,21 @@
+{% extends 'cliente/base.html' %}
+
+{% block content %}
+
+    <div class="cliente">
+        <a class="btn btn-default" href="{% url 'editar_cliente' pk=cliente.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a class="btn btn-default" href="{% url 'eliminar_cliente' pk=cliente.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+        <h2>{{ cliente.nombre }}</h2>
+        <h6> ------------------------</h6>
+        <h6>NIT: </h6><p>{{ cliente.nit|linebreaksbr }}</p>
+        <h6>Telefono: </h6><p>{{ cliente.telefono|linebreaksbr }}</p>
+        <h6>Direccion: </h6><p>{{ cliente.direccion|linebreaksbr }}</p>
+        <h6>Correo: </h6><p>{{ cliente.correo|linebreaksbr }}</p>
+        <h6>Equipos rentados: </h6>
+        {% for equipo in cliente.equipos.all %}
+            <p>{{ equipo.nombre }}</p>
+        {% endfor %}
+        <h6>fecha_de_rentacion: </h6><p>{{ cliente.fecha_de_rentacion|linebreaksbr }}</p>
+    </div>
+
+{% endblock %}

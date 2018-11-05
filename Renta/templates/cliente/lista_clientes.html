@@ -1,0 +1,21 @@
+{% extends 'cliente/base.html' %}
+
+{% block content %}
+<div class="customers">
+    <h1>Lista de clientes</h1>
+  <table id="customers">
+    <tr>
+      <th>Nombre</th>
+      <th>Telefono</th>
+      <th>Direccion</th>
+    </tr>
+      {% for cliente in clientes %}
+    <tr>
+      <td><a href="{% url 'detalle_cliente' pk=cliente.pk %}">{{ cliente.nombre }}</a></td>
+      <td>{{ cliente.telefono|linebreaksbr }}</td>
+      <td>{{ cliente.direccion|linebreaksbr }}</td>
+    </tr>
+      {% endfor %}
+  </table>
+</div>
+{% endblock %}
