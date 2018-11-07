@@ -4,7 +4,9 @@ from . import views
 
 urlpatterns = [
     #url(r'^$', views.lista_peliculas, name ='lista_peliculas'),
-    path('', views.lista_equipos, name='lista_equipos'),
+    path('', views.pagina_principal, name='pagina_principal'),
+    url(r'^principal/acerca/$', views.acerca_de_nosotros, name='acerca_de_nosotros'),
+    url(r'^equipo/lista/$', views.lista_equipos, name='lista_equipos'),
     path('equipo/<int:pk>/', views.detalle_equipo, name='detalle_equipo'),
     url(r'^equipo/nuevo/$', views.equipo_nuevo, name='equipo_nuevo'),
     path('equipo/<int:pk>/edit/', views.editar_equipo, name='editar_equipo'),

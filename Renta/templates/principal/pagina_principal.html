@@ -1,20 +1,20 @@
 {% load static %}
 <html>
     <head>
-        <title>Renta de equiposg</title>
+        <title>Renta de equipos</title>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="{% static 'css/Renta.css' %}">
         <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    </head>
     <body>
     <div class="page-header">
-        <a href="{% url 'cliente_nuevo' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
         <h1><a href="/">Renta equipos Angel</a></h1>
         <ul>
           <li><a class="active" href="{% url 'pagina_principal' %}">Home</a></li>
           <li><a href="{% url 'lista_equipos' %}">Equipos</a></li>
           <li><a href="{% url 'lista_clientes' %}">Clientes</a></li>
-          <li style="float:right"><a href="#about">About</a></li>
+          <li style="float:right"><a href="{% url 'acerca_de_nosotros' %}">Conocenos</a></li>
         </ul>
     </div>
     <div class="content container">
@@ -29,6 +29,8 @@
                {% endif %}
             {% block content %}
             {% endblock %}
+            <h1>¡¡Bienvenido!!</h1>
+            <h7>Has entrado al sistema de punto de venta de Renta equipos Angel</h7>
             </div>
         </div>
     </div>

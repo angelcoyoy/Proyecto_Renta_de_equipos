@@ -4,6 +4,12 @@ from Renta.models import Cliente, Equipo, Rentacion
 from .forms import ClienteForm, EquipoForm
 from django.shortcuts import redirect
 
+def pagina_principal(request):
+    return render(request, 'principal/pagina_principal.html')
+
+def acerca_de_nosotros(request):
+    return render(request, 'principal/acerca_de_nosotros.html')
+
 def lista_equipos(request):
     equipos = Equipo.objects.all()
     return render(request, 'equipo/lista_equipos.html', {'equipos': equipos})
