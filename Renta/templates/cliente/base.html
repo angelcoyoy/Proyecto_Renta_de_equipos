@@ -6,27 +6,26 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="{% static 'css/Renta.css' %}">
         <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    </head>
     <body>
+      <ul>
+        <li><a class="active" href="{% url 'pagina_principal' %}">Home</a></li>
+        <li><a href="{% url 'lista_equipos' %}">Equipos</a></li>
+        <li><a href="{% url 'lista_clientes' %}">Clientes</a></li>
+        <li><a href="{% url 'acerca_de_nosotros' %}">Conocenos</a></li>
+      </ul>
     <div class="page-header">
+    {% if user.is_authenticated %}
         <a href="{% url 'cliente_nuevo' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+        <p class="top-menu">Hola {{ user.username }} <small>(<a href="{% url 'logout' %}">Cerrar sesion</a>)</small></p>
+    {% else %}
+        <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+    {% endif %}
         <h1><a href="/">Renta equipos Angel</a></h1>
-        <ul>
-          <li><a class="active" href="{% url 'pagina_principal' %}">Home</a></li>
-          <li><a href="{% url 'lista_equipos' %}">Equipos</a></li>
-          <li><a href="{% url 'lista_clientes' %}">Clientes</a></li>
-          <li style="float:right"><a href="#about">About</a></li>
-        </ul>
     </div>
     <div class="content container">
         <div class="row">
             <div class="col-md-8">
-              {% if messages %}
-               <ul class="messages">
-                   {% for message in messages %}
-                   <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                   {% endfor %}
-               </ul>
-               {% endif %}
             {% block content %}
             {% endblock %}
             </div>

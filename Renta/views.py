@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from Renta.models import Cliente, Equipo, Rentacion
@@ -18,6 +19,7 @@ def detalle_equipo(request, pk):
     equipo = get_object_or_404(Equipo, pk=pk)
     return render(request, 'equipo/detalle_equipo.html', {'equipo': equipo})
 
+@login_required
 def equipo_nuevo(request):
     if request.method == "POST":
         formulario = EquipoForm(request.POST)
@@ -32,6 +34,7 @@ def equipo_nuevo(request):
         formulario = EquipoForm()
     return render(request, 'equipo/editar_equipo.html', {'formulario': formulario})
 
+@login_required
 def editar_equipo(request, pk):
     equipo = get_object_or_404(Equipo, pk=pk)
     if request.method == "POST":
@@ -44,6 +47,7 @@ def editar_equipo(request, pk):
         formulario = EquipoForm(instance=equipo)
     return render(request, 'equipo/editar_equipo.html', {'formulario': formulario})
 
+@login_required
 def eliminar_equipo(request, pk):
     equipo = get_object_or_404(Equipo, pk=pk)
     equipo.delete()
@@ -59,6 +63,7 @@ def detalle_cliente(request, pk):
     equipos = Equipo.objects.all()
     return render(request, 'cliente/detalle_cliente.html', {'cliente': cliente, 'equipos': equipos})
 
+@login_required
 def cliente_nuevo(request):
     if request.method == "POST":
         formulario = ClienteForm(request.POST)
@@ -73,6 +78,7 @@ def cliente_nuevo(request):
         formulario = ClienteForm()
     return render(request, 'cliente/editar_cliente.html', {'formulario': formulario})
 
+@login_required
 def editar_cliente(request, pk):
     cliente = get_object_or_404(Cliente, pk=pk)
     if request.method == "POST":
@@ -85,6 +91,7 @@ def editar_cliente(request, pk):
         formulario = ClienteForm(instance=cliente)
     return render(request, 'cliente/editar_cliente.html', {'formulario': formulario})
 
+@login_required
 def eliminar_cliente(request, pk):
     cliente = get_object_or_404(Cliente, pk=pk)
     cliente.delete()

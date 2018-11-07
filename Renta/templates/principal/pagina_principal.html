@@ -8,14 +8,19 @@
         <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     </head>
     <body>
+      <ul>
+        <li><a class="active" href="{% url 'pagina_principal' %}">Home</a></li>
+        <li><a href="{% url 'lista_equipos' %}">Equipos</a></li>
+        <li><a href="{% url 'lista_clientes' %}">Clientes</a></li>
+        <li><a href="{% url 'acerca_de_nosotros' %}">Conocenos</a></li>
+      </ul>
     <div class="page-header">
+      {% if user.is_authenticated %}
+          <p class="top-menu">Hola {{ user.username }} <small>(<a href="{% url 'logout' %}">Cerrar sesion</a>)</small></p>
+      {% else %}
+          <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+      {% endif %}
         <h1><a href="/">Renta equipos Angel</a></h1>
-        <ul>
-          <li><a class="active" href="{% url 'pagina_principal' %}">Home</a></li>
-          <li><a href="{% url 'lista_equipos' %}">Equipos</a></li>
-          <li><a href="{% url 'lista_clientes' %}">Clientes</a></li>
-          <li style="float:right"><a href="{% url 'acerca_de_nosotros' %}">Conocenos</a></li>
-        </ul>
     </div>
     <div class="content container">
         <div class="row">
@@ -29,8 +34,13 @@
                {% endif %}
             {% block content %}
             {% endblock %}
-            <h1>¡¡Bienvenido!!</h1>
-            <h7>Has entrado al sistema de punto de venta de Renta equipos Angel</h7>
+            {% if user.is_authenticated %}
+              <h1>¡¡Bienvenido!!</h1>
+              <h7>Has entrado al sistema de punto de venta de Renta equipos Angel</h7>
+            {% else %}
+              <h1>¡¡Ingresa!!</h1>
+              <h7>Inicia sesion para acceder al sistema de punto de venta de Renta equipos Angel</h7>
+            {% endif %}
             </div>
         </div>
     </div>
